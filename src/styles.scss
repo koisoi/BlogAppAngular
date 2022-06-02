@@ -1,0 +1,199 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap');
+
+* {
+    font-family: 'Comfortaa', cursive;
+    font-size: 15pt;
+}
+
+body {
+    background-image: url(assets/img/christmas-dark.png);
+}
+
+app-root body {
+    background-image: none;
+}
+
+html, body {
+    color: #8d8d8d;
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+hr {
+    border-top: 1px solid #a98ab0;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #a98ab0;
+    background-color: #a98ab0;
+    height: 0;
+}
+
+.loading {
+    border-radius: 15px;
+    color: #d0cad0;
+
+    width: 100px;
+    margin: auto;
+    content: url(assets/img/loading.gif);
+}
+
+.header {
+    background-color: #d0cad0;
+    color: #a98ab0;
+    font-weight: bolder;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.date-input {
+    text-align: center;
+    color: #8d8d8d;
+    border: 1px solid #8d8d8d;
+    border-radius: 10px;
+
+    transition: 500ms;
+
+    &::placeholder {
+        color: #d0cad0;
+    }
+
+    &:focus {
+        outline: 1px solid #a98ab0;
+        box-shadow: 0px 0px 10px #87648f;
+    }
+}
+
+.line-input {
+    @extend .date-input;
+
+    color: #a98ab0;
+    margin: 10px;
+    margin-top: 0;
+    padding: 5px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.file-input {
+    @extend .button;
+    &:hover {
+        background-color: #d0cad0;
+        border: 2px solid #d0cad0;
+        box-shadow: 0px 0px 10px #d0cad0;
+        color: #a98ab0;
+        transition: 500ms;
+    }
+}
+
+textarea {
+    @extend .line-input;
+
+    text-align: left;
+    margin: 0;
+    height: 65px;
+    overflow: auto;
+}
+
+.button {
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 2px solid #a98ab0;
+    background-color: #a98ab0;
+    box-shadow: 0px 0px 10px #87648f;
+    padding: 5px;
+    cursor: pointer;
+
+    transition: 1s;
+
+    &:disabled {
+        background-color: #8d8d8d;
+        border: 2px solid #8d8d8d;
+        box-shadow: none;
+        cursor: auto;
+    }
+
+    &:enabled {
+        border: 2px solid #a98ab0;
+        background-color: #a98ab0;
+        box-shadow: 0px 0px 10px #87648f;
+        cursor: pointer;
+        &:hover {
+            background-color: #d0cad0;
+            border: 2px solid #d0cad0;
+            box-shadow: 0px 0px 10px #d0cad0;
+            color: #a98ab0;
+            transition: 500ms;
+        }
+    }
+}
+
+.gender-radio {
+    margin-top: 10px;
+    input[type=radio] {
+        transition: 500ms;
+        display: none;
+        &:checked + label {
+            background-color: #a98ab0;
+            color: white;
+        }
+    }
+    label {
+        transition: 500ms;
+        cursor: pointer;
+        border: 1px solid #8d8d8d;
+        padding: 5px;
+        background-color: #d0cad0;
+        color: #8d8d8d;
+        border-left: none;
+        border-right: none;
+        &:first-of-type {
+            border-radius: 10px 0 0 10px;
+            border-right: 1px solid #8d8d8d;
+        }
+        &:last-of-type {
+            border-radius: 0 10px 10px 0;
+            border-left: 1px solid #8d8d8d;
+        }
+    }
+}
+
+a {
+    color: #87648f;
+    text-decoration: none;
+    transition: 500ms;
+    &:hover {
+        color: white;
+        text-shadow: 0 0 7px #3f2146;
+    }
+}
+
+.form-error {
+    color: #e35b51;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.success {
+    color: #88c396;
+    overflow: hidden;
+}
+
+.error-div {
+    background-color: #f1f1f0;
+    border: 1px solid #383940;
+    outline: 1px solid #383940;
+    border-radius: 20px;
+    overflow: hidden;
+    text-align: center;
+    width: 300px;
+    margin: auto;
+}

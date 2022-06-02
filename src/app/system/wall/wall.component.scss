@@ -1,0 +1,107 @@
+.form-container {
+    background-color: #a98ab0;
+    padding: 10px;
+    border-radius: 0px 30px 30px 30px;
+    box-shadow: 0 0 10px #a98ab0;
+
+    width: 85%;
+    height: 200px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .button {
+        align-self: flex-end;
+        margin: 7px 29px 0 0;
+        padding: 5px 10px;
+        
+        &:disabled {
+            background-color: #7b6d83;
+            border: 2px solid #7b6d83;
+        }
+
+        &:enabled {
+            background-color: #87648f;
+            border: 2px solid #87648f;
+            &:hover {
+                background-color: #d0cad0;
+                border: 2px solid #d0cad0;
+                box-shadow: 0px 0px 10px #d0cad0;
+                color: #a98ab0;
+                transition: 500ms;
+            }
+        }
+    }
+}
+
+.line-input {
+    max-width: 90%;
+    width: 90%;
+    text-align: left;
+    border-color: #7b6d83;
+}
+
+textarea {
+    @extend .line-input;
+    height: 100px;
+}
+
+hr {
+    width: 95%;
+    border-bottom: 0;
+    border-color: #c2b1c5;
+}
+
+.no-posts {
+    width: 200px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid #8d8d8d;
+    text-align: center;
+}
+
+select {
+    text-align: center;
+    color: #8d8d8d;
+    border: 1px solid #8d8d8d;
+    border-radius: 5px;
+}
+
+.select {
+    margin: auto;
+    margin-top: 15px;
+    padding: 5px 10px;
+    background-color: #7b6d83;
+    border: 2px solid #7b6d83;
+    border-radius: 20px;
+    color: white;
+    width: 60%;
+    text-align: center;
+}
+
+.posts-row {
+    div {
+        margin-bottom: 15px;
+    }
+}
+
+.post-header {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding: 7px 0;
+}
+
+.post {
+    background-color: white;
+    border-radius: 0px 30px 30px 30px;
+    box-shadow: 0 0 10px #a98ab0;
+    
+    width: 85%;
+    margin: auto;
+    padding: 20px;
+    word-wrap: break-word;
+}

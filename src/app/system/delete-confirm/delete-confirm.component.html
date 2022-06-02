@@ -1,0 +1,22 @@
+<div class="confirm-window">
+    <div class="header">Подтверждение<hr></div>
+    <div 
+      *ngIf="!this.deleteDone"
+      style="margin-bottom: 10px;">
+        Вы уверены, что хотите удалить аккаунт?
+    </div>
+    <div *ngIf="!this.deleteDone">
+        <input 
+          class="button" 
+          type="button"
+          value="Да!"
+          (click)="onConfirm()"
+          style="margin-right: 10px;">
+        <input 
+          class="button" 
+          type="button" 
+          [routerLink]="['/edit']"
+          value="Нет!">
+    </div>
+    <div *ngIf="this.deleteDone">До новых встреч!</div>
+</div>

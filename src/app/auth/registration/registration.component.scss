@@ -1,0 +1,47 @@
+.registration-window {
+    background-color: #f1f1f0;
+    border: 1px solid #383940;
+    outline: 1px solid #383940;
+    border-radius: 20px;
+    overflow: hidden;
+    padding-bottom: 12px;
+    text-align: center;
+    
+    max-width: 1000px;
+    width:1000px;
+    max-height: 350px;
+    height: 350px;
+    margin: auto;
+}
+
+.registration-content, .user-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 97%;
+}
+
+.profile-info, .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.user-1r, .user-2r {
+    @extend .user-info;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+form {
+    height: 80%;
+}
+
+input, textarea {
+    margin-top: 10px;
+}
+
+hr {
+    width: 200px;
+}

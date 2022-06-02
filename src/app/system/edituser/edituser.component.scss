@@ -1,0 +1,14 @@
+@import url(../../auth/registration/registration.component.scss);
+
+.profile-info, .user-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.user-1r, .user-2r {
+    @extend .user-info;
+    padding-left: 10px;
+    padding-right: 10px;
+}

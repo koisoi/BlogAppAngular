@@ -1,0 +1,28 @@
+<div 
+  class='errordiv'
+  *ngIf='userGetErr'>
+    Ошибка при отображении страницы. Перенаправление...
+</div>
+<div 
+  class="fullpost" 
+  *ngIf="!userGetErr">
+    <div style="color: #b9b9b9;">{{post?.date}}</div>
+    <h2>{{post?.title}}</h2>
+    <div style="white-space: pre-line;">{{post?.content}}</div><br>
+    <form 
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+        <textarea
+          style="resize: none;"
+          formControlName="ps"
+          maxlength="500"
+          spellcheck="false"
+          placeholder="Постскриптум...">
+        </textarea><br>
+        <input
+          type="submit"
+          class="button"
+          [disabled]="form.invalid"
+          value="Добавить">
+    </form>
+</div>

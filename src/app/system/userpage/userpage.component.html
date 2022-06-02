@@ -1,0 +1,47 @@
+<div
+  class="loading"
+  *ngIf="loading">
+</div>
+<div 
+  class='errordiv'
+  *ngIf='userGetErr && !loading'>
+    Ошибка при отображении страницы. Перенаправление на страницу входа...
+</div>
+<div style="display: flex;flex-direction: row;justify-content: center;">
+<div
+  *ngIf='!userGetErr && !loading'
+  class="userpage-window">
+  <div class="header">
+  <input
+    type='button'
+    class='button'
+    value='Редактировать профиль'
+    [routerLink]="['/edit']">
+  <input
+    type='button'
+    class='button'
+    value='Выйти'
+    style="margin-left: 20px;"
+    (click)='onExit()'></div>
+  <div style="display: flex;flex-direction: row;justify-content: space-evenly;">
+    <img 
+      *ngIf='user?.avatar'
+      src='{{user?.avatar}}'
+      class='avatar'>
+    <img 
+      *ngIf='!user?.avatar'
+      src='assets//img/user.png'
+      class='avatar'>
+  <div class="userpage-content">
+      <div style="color: #a98ab0; font-weight: bolder;font-size: 20pt">{{user?.login}}</div><hr>
+      <div><b>Пол:</b></div>
+      <div>{{user?.gender}}</div><br>
+      <div *ngIf='user?.birthday'><b>Дата рождения:</b></div>
+      <div *ngIf='user?.birthday'>{{birthday}}</div><br>
+      <div *ngIf='user?.interests'><b>Интересы:</b></div>
+      <div *ngIf='user?.interests' style="white-space: pre-line;">{{user?.interests}}</div><br>
+      <div *ngIf='user?.about'><b>Обо мне:</b></div>
+      <div *ngIf='user?.about' style="white-space: pre-line;">{{user?.about}}</div><br>
+    </div>
+  </div>
+    <app-wall></app-wall>

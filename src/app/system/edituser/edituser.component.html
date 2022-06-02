@@ -1,0 +1,182 @@
+<div
+  class="loading"
+  *ngIf="loading">
+</div>
+<div 
+  class='errordiv'
+  *ngIf='userGetErr && !loading'>
+    Ошибка при отображении страницы. Перенаправление на страницу входа...
+</div>
+<div 
+  class="registration-window"
+  *ngIf="!loading && !userGetErr">
+    <div class="header">Редактирование профиля<hr></div>
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+    <div 
+      class="registration-content" 
+      style="display:flex;justify-content: space-around;"
+      [ngClass]="{'has-error': 
+        form.get('login')?.invalid && form.get('login')?.touched &&
+        form.get('password')?.invalid && form.get('password')?.touched &&
+        form.get('email')?.invalid && form.get('email')?.touched &&
+        form.get('gender')?.invalid && form.get('gender')?.touched}">
+        <div class="profile-info">
+            <div><b>Профиль</b><hr></div>
+            <div><input 
+                  type="text" 
+                  class="line-input"
+                  formControlName="login"
+                  placeholder="Логин"
+                  spellcheck="false"
+                  maxlength="20">
+                  </div>
+            <div><input 
+                  type="email" 
+                  class="line-input"
+                  formControlName="email" 
+                  placeholder="Почта">
+                  </div>
+            <div><input 
+                  type="password" 
+                  class="line-input" 
+                  formControlName="password" 
+                  placeholder="Пароль"
+                  maxlength="20">
+                  </div>
+            <div style="margin-bottom: 10px;"><input 
+                  type="submit" 
+                  class="button"
+                  [disabled]="form.invalid"
+                  value="Сохранить"></div>
+                  <span><a [routerLink]="['/delete']">Удалить профиль?</a></span>
+        </div>
+        <div class="user-info">
+            <div><b>Информация</b><hr></div>
+            <div class="user-row">
+              <div class="user-1r">
+                <div><b>Дата рождения</b><br>
+                <input 
+                  type="date" 
+                  class="date-input" 
+                  min="1900-01-01" 
+                  max="2007-01-01"
+                  formControlName="birthday"></div>
+                <div><b>Пол</b><br>
+                <div class="gender-radio"><input 
+                  type="radio" 
+                  name="gender" 
+                  id="woman" 
+                  formControlName="gender"
+                  value="Женский">
+                <label for="woman">Женский</label>
+                <input 
+                  type="radio" 
+                  name="gender" 
+                  id="n/a" 
+                  formControlName="gender"
+                  value="Не указан">
+                <label for="n/a">Не указан</label>
+                <input 
+                  type="radio" 
+                  name="gender" 
+                  id="man" 
+                  formControlName="gender"
+                  value="Мужской">
+                <label for="man">Мужской</label><br>
+              </div>
+              </div>
+              <div><br>
+              <label 
+                for="file"
+                class="file-input">
+                  Загрузить аватар
+              </label>
+              <input 
+                type="file"
+                id="file"
+                accept=".jpg, .jpeg, .png"
+                formControlName="avatar"
+                (input)="handleUpload($event)"></div>
+          </div>
+            <div class="user-2r">
+                <div><b>Интересы</b><br>
+                <textarea 
+                  style="resize: none;"
+                  formControlName="interests"
+                  spellcheck="false"
+                  maxlength="1000">
+                </textarea></div>
+                <div><b>О себе</b><br>
+                <textarea 
+                  style="resize: none;"
+                  formControlName="about"
+                  spellcheck="false"
+                  maxlength="1000">
+                </textarea></div>
+            </div>
+          </div>
+        </div>
+        </div>
+      <span 
+      class="form-error" 
+      *ngIf="form.get('login')?.errors?.required && form.get('login')?.touched">
+        <img align="center" src="assets//img/alert.svg" width="25" height="25">
+        Поле "Логин" не может быть пустым
+    </span>
+    <span
+      class="form-error" 
+      *ngIf="form.get('login')?.errors?.minlength && form.get('login')?.touched">
+        <img align="center" src="assets//img/alert.svg" width="25" height="25">
+        Логин должен состоять как минимум из 3 символов
+    </span>
+    <span
+      class="form-error" 
+      *ngIf="loginTaken">
+        <img align="center" src="assets//img/alert.svg" width="25" height="25">
+        Данный логин занят
+    </span>
+    <span
+      class="form-error"
+      *ngIf="form.get('email')?.touched && form.get('email')?.errors?.required &&
+      !(form.get('login')?.errors && form.get('login')?.touched) && !loginTaken">
+        <img align="center" src="assets//img/alert.svg" width="25" height="25">
+        Поле "Почта" не может быть пустым
+    </span>
+    <span
+      class="form-error" 
+      *ngIf="this.emailTaken &&
+      !(form.get('login')?.errors && form.get('login')?.touched) && !loginTaken">
+        <img align="center" src="assets//img/alert.svg" width="25" height="25">
+        Данная почта занята
+    </span>
+    <span
+      class="form-error"
+      *ngIf="form.get('email')?.touched && form.get('email')?.errors?.email &&
+      !(form.get('login')?.errors && form.get('login')?.touched) && !loginTaken">
+        <img align="center" src="assets//img/alert.svg" width="25" height="25">
+        Почта введена некорректно
+    </span>
+    <span 
+      class="form-error" 
+      *ngIf="form.get('password')?.errors?.required && form.get('password')?.touched &&
+      !(form.get('login')?.errors && form.get('login')?.touched) && !loginTaken &&
+      !(form.get('email')?.errors && form.get('email')?.touched) && !emailTaken">
+        Поле "Пароль" не может быть пустым
+    </span>
+    <span
+      class="form-error" 
+      *ngIf="form.get('password')?.errors?.minlength && form.get('password')?.touched &&
+      !(form.get('login')?.errors && form.get('login')?.touched) && !loginTaken &&
+      !(form.get('email')?.errors && form.get('email')?.touched) && !emailTaken">
+        Пароль должен состоять как минимум из 8 символов
+    </span>
+    <span
+      class="success"
+      *ngIf="saveSuccess">
+        <img align="center" src="assets//img/success.svg" width="25" height="25">
+        Успешно сохранено!
+    </span>
+</form>
+</div>
